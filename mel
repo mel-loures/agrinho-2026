@@ -1,0 +1,71 @@
+// script.js - AGRINHO 2026
+
+// Espera o conteúdo da página carregar
+document.addEventListener("DOMContentLoaded", function () {
+
+    console.log("Site AGRINHO 2026 carregado com sucesso!");
+
+    // =========================
+    // MENU (caso exista no HTML)
+    // =========================
+    const menuToggle = document.querySelector(".menu-toggle");
+    const menu = document.querySelector(".menu");
+
+    if (menuToggle && menu) {
+        menuToggle.addEventListener("click", function () {
+            menu.classList.toggle("active");
+        });
+    }
+
+    // =========================
+    // ANIMAÇÃO AO ROLAR A PÁGINA
+    // =========================
+    const elementos = document.querySelectorAll(".animar");
+
+    function verificarScroll() {
+        const topoJanela = window.scrollY + window.innerHeight;
+
+        elementos.forEach((el) => {
+            if (el.offsetTop < topoJanela - 100) {
+                el.classList.add("visivel");
+            }
+        });
+    }
+
+    window.addEventListener("scroll", verificarScroll);
+    verificarScroll();
+
+    // =========================
+    // FORMULÁRIO (validação simples)
+    // =========================
+    const form = document.querySelector("form");
+
+    if (form) {
+        form.addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            const nome = form.querySelector("input[name='nome']");
+            const email = form.querySelector("input[name='email']");
+
+            if (!nome.value || !email.value) {
+                alert("Por favor, preencha todos os campos!");
+                return;
+            }
+
+            alert("Mensagem enviada com sucesso! 🌱");
+            form.reset();
+        });
+    }
+
+    // =========================
+    // CLIQUE EM BOTÕES
+    // =========================
+    const botoes = document.querySelectorAll("button");
+
+    botoes.forEach((botao) => {
+        botao.addEventListener("click", function () {
+            console.log("Botão clicado:", botao.innerText);
+        });
+    });
+
+});
